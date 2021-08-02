@@ -6,9 +6,9 @@
 def try_digit(n):
     # if n >= 7897:
     # if n >= 63107:
-    if n >= 9759384755:
+    # if n >= 9759384755:
     # if n >= 2112:
-    # if n >= 3178:
+    if n >= 3178:
     # if n >= 3199:
     # if n >= 69105:
     # if n >= 999:
@@ -34,20 +34,24 @@ def guess_number(N):
     d = 0
     # N = int("9" * c)
 
-    for f in range (1,N+1):
+    # for f in range (1,N+1):
+    for f in range (N-1,-1,-1):
         print ('----')
         print (f'{d=}')
         for i in range(10*d+1, 10*d+9+2):
             print (f'{i=}')
             # print ('trying {}'.format(i*10**(c-f) + (N//(10**f))))
             #print ('trying {}'.format(i*10**(c-f) + (int("9" * (c-f)))))
+            print ('trying {}'.format(i * 10**f - 1))
 
             # if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
             # xx = ("9" * (c-f)) or "0"
             # if next_digit := try_digit(i*10**(c-f) + (int(("9" * (c-f)) or "0"))):
             # if next_digit := try_digit(i * 10**(c-f) + 10**(c-f) - 1):
-            if next_digit := try_digit(i * 10**(N-f) - 1):
-                d = next_digit // 10**(N-f)
+            # if next_digit := try_digit(i * 10**(N-f) - 1):
+            if next_digit := try_digit(i * 10**f - 1):
+                # d = next_digit // 10**(N-f)
+                d = next_digit // 10**f
                 break
 
     return d
