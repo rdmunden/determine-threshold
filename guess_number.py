@@ -37,7 +37,10 @@ def guess_number(N):
     # N = int("9" * c)
 
     # for f in range (1,N+1):
-    for f in range (N-1,-1,-1):
+    # for f in range (N-1,-1,-1):
+    digits_left = N
+    while digits_left > 0:
+        digits_left -= 1
         print ('----')
         # print (f'Most significant digits found so far: {msd=}')
         # print (f'Most significant digits found so far: {msd or "None"}')
@@ -57,14 +60,15 @@ def guess_number(N):
                 ...
                 199 
             '''
-
+            
             # print (f'\tTrying significant digits: {d=}', end='')
 
             ''' Even though it is a mathematical simplification to express this formula as:
                 (i+1) * 10**f - 1
                 I am multiplying out the (i+1) in order to make it more clear how this works
             '''
-            try_num = d * 10**f + 10**f - 1
+            # try_num = d * 10**f + 10**f - 1
+            try_num = d * 10**digits_left + 10**digits_left - 1
             print ('\t... trying: {:0{width}}'.format(try_num, width=N))
 
             # if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
@@ -95,7 +99,8 @@ def guess_number(N):
                         19999
                 '''
                 # d = next_digit // 10**(N-f)
-                msd = next_digit // 10**f
+                # msd = next_digit // 10**f
+                msd = next_digit // 10**digits_left
                 break
 
     return msd
