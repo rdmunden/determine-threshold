@@ -6,47 +6,49 @@
 def try_digit(n):
     # if n >= 7897:
     # if n >= 63107:
-    if n >= 9759384755:
+    # if n >= 9759384755:
+    # if n >= 2112:
+    # if n >= 3178:
+    # if n >= 3199:
+    # if n >= 69105:
+    if n >= 999:
         print (f'was true: {n}')
         return n
 
 #----------
 # def find_lowest_wout_going_over():
-def guess_number(n=9):
+def get_num_digits(n=9):
     """ This is going to assume the number you want is at least 1
         So it's positive non-zero
     """
+    ''' this actually returns the largest number with the correct number of digits '''
     # if is_over_limit(n):
     if try_digit(n):
         return n
     else:
-        return guess_number((n * 10) + 9)
+        return get_num_digits((n * 10) + 9)
 
+def guess_number(N):
+    c = len(str(N))
+    d = 0
 
-N = guess_number()
-print(f'ans is: {N}')
+    for f in range (1,c+1):
+        print ('----')
+        print (f'{d=}')
+        for i in range(10*d, 10*d+9+1):
+            print (f'{i=}')
+            print ('trying {}'.format(i*10**(c-f) + (N//(10**f))))
 
+            if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
+                d = next_digit // 10**(c-f)
+                break
 
-#----------
-# N = 9999
-# N = 99999
-c = len(str(N))
-d = 0
-
-for f in range (1,c+1):
-    print ('----')
-    print (f'{d=}')
-    for i in range(10*d, 10*d+9+1):
-        print (f'{i=}')
-
-        print ('trying {}'.format(i*10**(c-f) + (N//(10**f))))
-
-        if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
-
-            d = next_digit // 10**(c-f)
-
-            break
+    return d
 
 
 print ('====')
-print (d)
+N = get_num_digits()
+print(f'Number of digits: {N}')
+# print (d)
+ans = guess_number(N)
+print(f'Answer is: {ans}')
