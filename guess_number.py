@@ -50,22 +50,22 @@ def guess_number(N):
         for d in range(10*msd, 10*msd+9+1):
             ''' d represents the most significant digits found so far
                 10*d shifts them to the left so we can find the next significant digit after them
-                e.g. if two msds have been found, and they are 19, this will loop over the range:
+                e.g. if two msd's have been found, and they are 19, this will loop over the range:
                 190
                 191
                 192
                 ...
                 199 
             '''
-            # print (f'\tMost significant digits being tried: {d=}')
+
             # print (f'\tTrying significant digits: {d=}', end='')
 
-            # print ('trying {}'.format(i*10**(c-f) + (N//(10**f))))
-            #print ('trying {}'.format(i*10**(c-f) + (int("9" * (c-f)))))
-            # print ('trying {}'.format(i * 10**f - 1))
-            # print ('\tNumber being tried: {:0{width}}'.format((d * 10**f + 10**f - 1), width=N))
-            print ('\t... trying number'
-                   ': {:0{width}}'.format((d * 10**f + 10**f - 1), width=N))
+            ''' Even though it is a mathematical simplification to express this formula as:
+                (i+1) * 10**f - 1
+                I am multiplying out the (i+1) in order to make it more clear how this works
+            '''
+            try_num = d * 10**f + 10**f - 1
+            print ('\t... trying: {:0{width}}'.format(try_num, width=N))
 
             # if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
             # xx = ("9" * (c-f)) or "0"
@@ -74,11 +74,9 @@ def guess_number(N):
             # if next_digit := try_digit(i * 10**(N-f) - 1):
 
             # if next_digit := try_digit((i+1) * 10**f - 1):
-            ''' Even though it is a mathematical simplification to express this formula as:
-                (i+1) * 10**f - 1
-                I am multiplying out the (i+1) in order to make it more clear how this works
-            '''
-            if next_digit := try_digit(d * 10**f + 10**f - 1):
+
+            # if next_digit := try_digit(d * 10**f + 10**f - 1):
+            if next_digit := try_digit(try_num):
                 ''' if there are 5 digits in the answer
                     and we have found the two most significant digits
                     and say e.g. they are 19 (which is represented by "i")
@@ -103,7 +101,6 @@ def guess_number(N):
     return msd
 
 
-print ('====')
 N = get_num_digits()
 print(f'Number of digits: {N}')
 # print (d)
