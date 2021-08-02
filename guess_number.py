@@ -37,13 +37,18 @@ def guess_number(N):
     # for f in range (1,N+1):
     for f in range (N-1,-1,-1):
         print ('----')
-        print (f'{d=}')
+        print (f'Most significant digits found: {d=}')
         for i in range(10*d+1, 10*d+9+2):
+            ''' Even though it is mathematically correct and a simplification to use "10*d+1" to "10*d+11" here
+                and use just use "i" down below,
+                I think it makes the code easier to visualize by changing the range to "10*d" to "10*d+10" and
+                using "i+1" below
+            '''
             print (f'{i=}')
             # print ('trying {}'.format(i*10**(c-f) + (N//(10**f))))
             #print ('trying {}'.format(i*10**(c-f) + (int("9" * (c-f)))))
             print ('trying {}'.format(i * 10**f - 1))
-
+            
             # if next_digit := try_digit(i*10**(c-f) + (N//(10**f))):
             # xx = ("9" * (c-f)) or "0"
             # if next_digit := try_digit(i*10**(c-f) + (int(("9" * (c-f)) or "0"))):
